@@ -15,7 +15,7 @@ let countTime
 let minutes = 0
 let seconds = 0
 
-let TimesArr = []
+let timesArr = []
 
 const handleStart = () => {
 	clearInterval(countTime)
@@ -41,13 +41,25 @@ const handleStop = () => {
 	time.innerHTML = `Ostatni czas: ${stopwatch.textContent}`
 	if (stopwatch.textContent !== '0:00') {
 		time.style.visibility = 'visible'
-		TimesArr.push(stopwatch.textContent)
+		timesArr.push(stopwatch.textContent)
 	}
+	clearStuff()
+}
+const handleReset = () => {
+	time.style.visibility = 'hidden'
+	clearStuff()
+	timesArr = []
+}
+
+const clearStuff = () => {
 	clearInterval(countTime)
 	stopwatch.textContent = '0:00'
 	timeList.textContent = ''
+	seconds = 0
+	minutes = 0
 }
 
 startBtn.addEventListener('click', handleStart)
 pauseBtn.addEventListener('click', handlePause)
 stopBtn.addEventListener('click', handleStop)
+resetBtn.addEventListener('click', handleReset)
